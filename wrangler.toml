@@ -1,5 +1,5 @@
 # Cloudflare Workers配置文件
-name = "github-proxy"
+name = "ghp"
 type = "javascript"
 account_id = "" # 部署时填写你的Cloudflare账户ID
 workers_dev = true
