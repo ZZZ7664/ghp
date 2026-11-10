@@ -24,7 +24,7 @@ workers_dev = true
 ```
 
 - `src/index.js` 是 Worker 的正式入口（ES Module 格式），负责 `/`、`/api/*`、`/raw/*` 及普通页面/静态资源的代理与链接重写。
-- 落地页 `index.html` 由 Worker 以文本模块方式导入，访问根路径时返回。
+- 落地页由 `src/landing.js`（由 `index.html` 自动生成的字符串模块）提供，访问根路径时返回；修改 `index.html` 后需要重新生成该文件。
 - 本地校验：`npx wrangler deploy --dry-run`
 - 其余文件（`worker.js`、`enhanced-worker.js`、`_worker.js`、`pages-function.js`、`functions/`、`public/`）是早期 Pages / 独立 Worker 方案的备份，不参与当前的 Workers 构建，可按需清理。
 
