@@ -1,11 +1,6 @@
-# Cloudflare Workers配置文件
+# Cloudflare Workers 配置（Wrangler v4）
+# 入口脚本必须是 ES Module 格式，配合 Cloudflare 的 Git 集成构建使用
 name = "ghp"
-type = "javascript"
-account_id = "" # 部署时填写你的Cloudflare账户ID
+main = "src/index.js"
+compatibility_date = "2024-11-01"
 workers_dev = true
-compatibility_date = "2023-05-18"
-
-[build]
-command = ""
-[build.upload]
-format = "service-worker"

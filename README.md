@@ -12,6 +12,22 @@
 
 ## 部署方法
 
+### 方法0: Cloudflare Workers + Git 集成（当前采用）
+
+仓库根目录的 `wrangler.toml` 已配置好入口，Cloudflare 的构建部署命令为 `npx wrangler deploy` 时可直接使用：
+
+```toml
+name = "ghp"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+workers_dev = true
+```
+
+- `src/index.js` 是 Worker 的正式入口（ES Module 格式），负责 `/`、`/api/*`、`/raw/*` 及普通页面/静态资源的代理与链接重写。
+- 落地页 `index.html` 由 Worker 以文本模块方式导入，访问根路径时返回。
+- 本地校验：`npx wrangler deploy --dry-run`
+- 其余文件（`worker.js`、`enhanced-worker.js`、`_worker.js`、`pages-function.js`、`functions/`、`public/`）是早期 Pages / 独立 Worker 方案的备份，不参与当前的 Workers 构建，可按需清理。
+
 ### 方法1: 使用Cloudflare Workers
 
 1. 登录 [Cloudflare Dashboard](https://dash.cloudflare.com/)
